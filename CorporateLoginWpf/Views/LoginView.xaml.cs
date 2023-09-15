@@ -13,8 +13,7 @@ namespace CorporateLoginWpf.Views
         //todo find alternative solution
         private void PasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
         {
-            if(DataContext != null)
-            { ((dynamic)DataContext).Password = ((PasswordBox)sender).SecurePassword; }
+            if(DataContext != null) ((dynamic) DataContext).Password = ((PasswordBox) sender).SecurePassword;
         }
     }
 }

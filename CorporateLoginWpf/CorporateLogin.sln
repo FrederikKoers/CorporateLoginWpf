@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33723.286
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CorporateLoginWpf", "CorporateLoginWpf.csproj", "{40A0316C-5A84-4DA0-A43D-B7DC669949BE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CorporateLogin.Wpf", "CorporateLogin.Wpf.csproj", "{40A0316C-5A84-4DA0-A43D-B7DC669949BE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
