@@ -1,12 +1,21 @@
 ﻿using Prism.Commands;
 using Prism.Mvvm;
 using System.Security;
+using System.Threading.Tasks;
 using System.Windows;
+using CorporateLogin.Services.DbServices;
 
 namespace CorporateLoginWpf.ViewModels
 {
     public class LoginViewModel : BindableBase
     {
+        private readonly IUserService _userService;
+
+        public LoginViewModel(IUserService userService)
+        {
+            _userService = userService;
+            LoginCommand = new DelegateCommand(Login);
+        }
         private string _username;
         private SecureString _password;
 
@@ -23,11 +32,7 @@ namespace CorporateLoginWpf.ViewModels
         }
 
         public DelegateCommand LoginCommand { get; }
-
-        public LoginViewModel()
-        {
-            LoginCommand = new DelegateCommand(Login);
-        }
+        
 
         private void Login()
         {
@@ -44,6 +49,14 @@ namespace CorporateLoginWpf.ViewModels
 
         private bool IsValidLogin(string username, SecureString password)
         {
+            if (_userService.GetUserByName(username) != null && _userService.CheckPassword(username, password))
+            {
+                return true;
+            }
+            else
+            {
+                _userService.CreateUser(username, password);
+            }
             // Hier sollten Sie die Datenbankabfrage für die Benutzerdaten implementieren.
             // Überprüfen Sie auch, ob das Passwort den Sicherheitsrichtlinien entspricht.
             // Wenn der Benutzer erfolgreich authentifiziert wird, geben Sie true zurück, sonst false.
