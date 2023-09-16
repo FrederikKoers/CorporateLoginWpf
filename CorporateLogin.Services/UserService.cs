@@ -1,25 +1,19 @@
 ﻿using CorporateLogin.Common.Models;
-using CorporateLogin.Services.Repository;
-using Microsoft.EntityFrameworkCore;
-using System.Runtime.InteropServices;
 using System.Security;
-using System.Xml.Linq;
+using CorporateLogin.Common.Interfaces;
 
 namespace CorporateLogin.Services
 {
-
-    public interface IUserService
-    {
-        bool Login(string name, SecureString password);
-        bool CreateUser(string username, SecureString password);
-    }
-
     public class UserService : IUserService
     {
         private readonly IUserRepository _userRepository;
         private readonly ISecureService _secureService;
         private const int MaxFailedPasswordAttempts = 3;
+#if DEBUG
         private const int PasswordMinimumLength = 3;
+#else
+        private const int PasswordMinimumLength = 8;
+#endif
 
         public UserService(IUserRepository userRepository, ISecureService secureService)
         {
@@ -27,7 +21,7 @@ namespace CorporateLogin.Services
             _secureService = secureService;
         }
 
-        private bool ValidateUserAndPasswort(string name, SecureString password)
+        private bool ValidateUserAndPassword(string name, SecureString password)
         {
             if (string.IsNullOrWhiteSpace(name))
             {
@@ -48,7 +42,7 @@ namespace CorporateLogin.Services
 
         public bool Login(string name, SecureString password)
         {
-            if (ValidateUserAndPasswort(name, password))
+            if (ValidateUserAndPassword(name, password))
             {
                 //validation name or password is empty or too short
                 return false;
@@ -84,7 +78,7 @@ namespace CorporateLogin.Services
 
         public bool CreateUser(string username, SecureString password)
         {
-            if (ValidateUserAndPasswort(username, password))
+            if (ValidateUserAndPassword(username, password))
             {
                 //validation name or password is empty or too short
                 return false;
@@ -107,9 +101,7 @@ namespace CorporateLogin.Services
             newUser.Verified = true;
 #endif
             _userRepository.Update(newUser);
-
-
-
+            
             return true;
 
         }

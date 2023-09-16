@@ -1,23 +1,12 @@
 ﻿using CorporateLogin.Common.Models;
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.InteropServices;
 using System.Security;
 using System.Security.Cryptography;
 using System.Text;
-using System.Threading.Tasks;
+using CorporateLogin.Common.Interfaces;
 
 namespace CorporateLogin.Services
 {
-    public interface ISecureService
-    {
-        User CreateInitialUser(string name, SecureString password);
-        bool CheckPassword(User user, SecureString password);
-        bool CheckPasswordRules(SecureString password);
-    }
-
     public class SecureService : ISecureService
     {
         //todo clean the marshal stuff

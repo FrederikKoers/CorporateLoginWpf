@@ -1,4 +1,4 @@
-﻿<Window x:Class="CorporateLoginWpf.Views.LoginView"
+﻿<Window x:Class="CorporateLogin.Wpf.Views.LoginView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Login" Height="300" Width="400">

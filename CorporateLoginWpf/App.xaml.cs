@@ -1,14 +1,12 @@
-﻿using CorporateLoginWpf.Views;
-using Prism.Ioc;
-using System.Windows;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
-using System;
+﻿using System.Windows;
+using CorporateLogin.Common.Interfaces;
 using CorporateLogin.Services;
-using Microsoft.Extensions.Options;
 using CorporateLogin.Services.Repository;
+using CorporateLogin.Wpf.Views;
+using Microsoft.EntityFrameworkCore;
+using Prism.Ioc;
 
-namespace CorporateLoginWpf
+namespace CorporateLogin.Wpf
 {
     /// <summary>
     /// Interaction logic for App.xaml

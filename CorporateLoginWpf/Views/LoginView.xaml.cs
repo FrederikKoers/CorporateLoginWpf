@@ -1,7 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 
-namespace CorporateLoginWpf.Views
+namespace CorporateLogin.Wpf.Views
 {
     public partial class LoginView : Window
     {

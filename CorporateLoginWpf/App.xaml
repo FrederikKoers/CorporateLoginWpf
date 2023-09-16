@@ -1,7 +1,7 @@
-﻿<prism:PrismApplication x:Class="CorporateLoginWpf.App"
+﻿<prism:PrismApplication x:Class="CorporateLogin.Wpf.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:CorporateLoginWpf"
+             xmlns:local="clr-namespace:CorporateLogin.Wpf"
              xmlns:prism="http://prismlibrary.com/" >
     <Application.Resources>
          

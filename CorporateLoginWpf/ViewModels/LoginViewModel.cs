@@ -1,11 +1,11 @@
-﻿using Prism.Commands;
-using Prism.Mvvm;
-using System.Security;
-using System.Threading.Tasks;
+﻿using System.Security;
 using System.Windows;
+using CorporateLogin.Common.Interfaces;
 using CorporateLogin.Services;
+using Prism.Commands;
+using Prism.Mvvm;
 
-namespace CorporateLoginWpf.ViewModels
+namespace CorporateLogin.Wpf.ViewModels
 {
     public class LoginViewModel : BindableBase
     {

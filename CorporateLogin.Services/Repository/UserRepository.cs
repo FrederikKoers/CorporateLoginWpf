@@ -1,14 +1,9 @@
-﻿using CorporateLogin.Common.Models;
+﻿using CorporateLogin.Common.Interfaces;
+using CorporateLogin.Common.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace CorporateLogin.Services.Repository
 {
-    public interface IUserRepository
-    {
-        User GetUserByName(string name);
-        User Update(User user);
-        bool CheckUserExistByName(string name);
-    }
     public class UserRepository : IUserRepository
     {
         private readonly ApplicationDbContext _context;
