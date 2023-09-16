@@ -1,13 +1,13 @@
 ﻿using CorporateLogin.Common.Models;
 using Microsoft.EntityFrameworkCore;
-using CorporateLogin.Services.Repository;
 
-namespace CorporateLogin.Services.DbServices
+namespace CorporateLogin.Services.Repository
 {
     public interface IUserRepository
     {
         User GetUserByName(string name);
         User Update(User user);
+        bool CheckUserExistByName(string name);
     }
     public class UserRepository : IUserRepository
     {
@@ -18,10 +18,14 @@ namespace CorporateLogin.Services.DbServices
             _context = context;
             _users = context.Users;
         }
-        
+
         public User GetUserByName(string name)
         {
             return _users.FirstOrDefault(u => u.Username == name);
+        }
+        public bool CheckUserExistByName(string name)
+        {
+            return _users.Any(u => u.Username == name);
         }
 
         public User Update(User user)

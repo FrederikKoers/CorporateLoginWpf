@@ -13,13 +13,15 @@ namespace CorporateLogin.Services
 {
     public interface ISecureService
     {
-        User CreateUser(string name, SecureString password);
+        User CreateInitialUser(string name, SecureString password);
         bool CheckPassword(User user, SecureString password);
+        bool CheckPasswordRules(SecureString password);
     }
 
     public class SecureService : ISecureService
     {
-        public User CreateUser(string name, SecureString password)
+        //todo clean the marshal stuff
+        public User CreateInitialUser(string name, SecureString password)
         {
             User user;
             IntPtr ptr = Marshal.SecureStringToBSTR(password);
@@ -57,6 +59,45 @@ namespace CorporateLogin.Services
             }
 
             return result;
+        }
+
+        public bool CheckPasswordRules(SecureString password)
+        {
+            bool result = true;
+            IntPtr ptr = Marshal.SecureStringToBSTR(password);
+            try
+            {
+                char[] passwordChars = new char[password.Length];
+                Marshal.Copy(ptr, passwordChars, 0, password.Length);
+
+                //rules should be defined in DB, Institute or global, depending on the requirements  
+                if (!passwordChars.Any(char.IsUpper))
+                    result = false;
+                
+                if (!passwordChars.Any(char.IsLower))
+                    result = false;
+                
+                if (!passwordChars.Any(char.IsDigit))
+                    result = false;
+
+                if (!passwordChars.Any(IsSpecialCharacter))
+                    result = false;
+
+
+                Array.Clear(passwordChars, 0, passwordChars.Length);
+            }
+            finally
+            {
+                Marshal.ZeroFreeBSTR(ptr);
+            }
+
+            return result;
+        }
+
+        private static bool IsSpecialCharacter(char c)
+        {
+            char[] specialCharacters = { '!', '@', '#', '$', '%', '^', '&', '*' };
+            return specialCharacters.Contains(c);
         }
 
         private static class PasswordHasher

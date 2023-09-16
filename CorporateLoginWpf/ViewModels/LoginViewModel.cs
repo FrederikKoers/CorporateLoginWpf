@@ -4,7 +4,6 @@ using System.Security;
 using System.Threading.Tasks;
 using System.Windows;
 using CorporateLogin.Services;
-using CorporateLogin.Services.DbServices;
 
 namespace CorporateLoginWpf.ViewModels
 {
@@ -61,7 +60,16 @@ namespace CorporateLoginWpf.ViewModels
 
         private void CreateUser()
         {
+            if (_userService.CreateUser(Username, Password))
+            {
+                MessageBox.Show("Benutzer angelegt!");
 
+            }
+            else
+            {
+                //proper Validation Steps
+                MessageBox.Show("Benutzer konnte nicht angelegt werden.");
+            }
         }
     }
 }
