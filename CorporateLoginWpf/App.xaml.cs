@@ -1,12 +1,13 @@
 ﻿using CorporateLoginWpf.Views;
 using Prism.Ioc;
 using System.Windows;
-using CorporateLogin.Services.DbContext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using System;
+using CorporateLogin.Services;
 using CorporateLogin.Services.DbServices;
 using Microsoft.Extensions.Options;
+using CorporateLogin.Services.Repository;
 
 namespace CorporateLoginWpf
 {
@@ -26,10 +27,10 @@ namespace CorporateLoginWpf
             optionsBuilder.UseInMemoryDatabase("InMemoryDatabase");
 
             containerRegistry.RegisterInstance(optionsBuilder.Options);
-            //containerRegistry.RegisterSingleton<ApplicationDbContext>();
-
-            //containerRegistry.RegisterSingleton<IInstituteService, InstituteService>();
+            
+            containerRegistry.RegisterSingleton<IUserRepository, UserRepository>();
             containerRegistry.RegisterSingleton<IUserService, UserService>();
+            containerRegistry.RegisterSingleton<ISecureService, SecureService>();
 
         }
     }
