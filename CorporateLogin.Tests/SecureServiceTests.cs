@@ -34,11 +34,11 @@ public class SecureServiceTests
     [Fact]
     public void CheckPasswordWithValidPassword()
     {
+        var initialUser = _secureService.CreateInitialUser("TestUser", _validPassword);
         var user = new User
         {
             Username = "TestUser",
-            PasswordHash = _secureService
-                .CreateInitialUser("TestUser", _validPassword).PasswordHash
+            PasswordHash = initialUser.PasswordHash
         };
 
         // Act
@@ -51,11 +51,11 @@ public class SecureServiceTests
     [Fact]
     public void CheckPasswordWithInvalidPassword()
     {
+        var initialUser = _secureService.CreateInitialUser("TestUser", _validPassword);
         var user = new User
         {
             Username = "TestUser",
-            PasswordHash = _secureService
-                .CreateInitialUser("TestUser", _validPassword).PasswordHash
+            PasswordHash = initialUser.PasswordHash
         };
 
         var result = _secureService.CheckPassword(user, _invalidPassword);

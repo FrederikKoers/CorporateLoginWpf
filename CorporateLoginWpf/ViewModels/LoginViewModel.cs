@@ -1,7 +1,6 @@
 ﻿using System.Security;
 using System.Windows;
 using CorporateLogin.Common.Interfaces;
-using CorporateLogin.Services;
 using Prism.Commands;
 using Prism.Mvvm;
 
@@ -16,14 +15,14 @@ namespace CorporateLogin.Wpf.ViewModels
 
         public string Username
         {
-            get { return _username; }
-            set { SetProperty(ref _username, value); }
+            get => _username;
+            set => SetProperty(ref _username, value);
         }
 
         public SecureString Password
         {
-            get { return _password; }
-            set { SetProperty(ref _password, value); }
+            get => _password;
+            set => SetProperty(ref _password, value);
         }
 
         public DelegateCommand LoginCommand { get; }

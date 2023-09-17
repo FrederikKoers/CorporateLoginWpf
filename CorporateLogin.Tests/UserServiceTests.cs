@@ -2,7 +2,6 @@ using System.Security;
 using CorporateLogin.Common.Interfaces;
 using CorporateLogin.Common.Models;
 using CorporateLogin.Services;
-using CorporateLogin.Services.Repository;
 using CorporateLogin.Tests.Helpers;
 using Moq;
 using Xunit;
